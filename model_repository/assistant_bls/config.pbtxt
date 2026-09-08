@@ -1,0 +1,15 @@
+name: "assistant_bls"
+backend: "python"
+max_batch_size: 0
+
+input [
+  { name: "TEXT", data_type: TYPE_STRING, dims: [ 1 ] }
+]
+
+output [
+  { name: "ANSWER", data_type: TYPE_STRING, dims: [ 1 ] },
+  { name: "ROUTE",  data_type: TYPE_STRING, dims: [ 1 ] },
+  { name: "DOCS",   data_type: TYPE_STRING, dims: [ 1 ] }
+]
+
+instance_group [ { count: 2, kind: KIND_CPU } ]
