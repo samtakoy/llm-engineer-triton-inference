@@ -1,0 +1,19 @@
+name: "e5_embedder"
+backend: "onnxruntime"
+max_batch_size: 8
+
+input [
+  { name: "input_ids",      data_type: TYPE_INT64, dims: [ 128 ] },
+  { name: "attention_mask", data_type: TYPE_INT64, dims: [ 128 ] }
+]
+
+output [
+  { name: "sentence_embedding", data_type: TYPE_FP32, dims: [ 384 ] }
+]
+
+dynamic_batching {
+  preferred_batch_size: [ 4, 8 ]
+  max_queue_delay_microseconds: 3000
+}
+
+instance_group [ { count: 1, kind: KIND_CPU } ]

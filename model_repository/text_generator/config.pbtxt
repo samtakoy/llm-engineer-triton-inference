@@ -1,0 +1,5 @@
+backend: "vllm"
+
+model_transaction_policy { decoupled: False }
+
+instance_group [ { count: 1, kind: KIND_MODEL } ]

@@ -1,0 +1,8 @@
+{
+  "model": "Qwen/Qwen3-0.6B",
+  "disable_log_requests": true,
+  "gpu_memory_utilization": 0.85,
+  "max_model_len": 2048,
+  "dtype": "float16",
+  "enforce_eager": true
+}
