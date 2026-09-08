@@ -1,0 +1,29 @@
+services:
+  triton:
+    image: triton-hw
+    build: .
+    container_name: triton
+    ports:
+      - 8000:8000    # HTTP
+      - 8001:8001    # gRPC
+      - 8002:8002    # метрики
+    shm_size: '2gb'
+    volumes:
+      - ./model_repository:/models
+      - hf_cache:/root/.cache/huggingface
+    command: tritonserver --model-repository=/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: 1
+    environment:
+      - HF_ENDPOINT=${HF_ENDPOINT:-https://huggingface.co}
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
+      - NO_PROXY=${NO_PROXY:-localhost,127.0.0.1}
+
+volumes:
+  hf_cache:

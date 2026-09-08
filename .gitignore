@@ -2,3 +2,4 @@
 /build/
 /model_repository/*/1/*.onnx
 /docs
+/.env

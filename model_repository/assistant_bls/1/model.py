@@ -13,7 +13,13 @@ NON_TOXIC_THRESHOLD = 0.5
 TOP_K = 3
 MAX_LENGTH = 128
 REFUSAL_TEXT = "Переформулируйте вопрос, пожалуйста, и я помогу."
-
+SAMPLING_PARAMETERS = {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "max_tokens": 256,
+}
 
 class TritonPythonModel:
     """Принимает вопрос, отвечает отказом либо ответом по документам."""
@@ -143,14 +149,13 @@ class TritonPythonModel:
         return [self.documents[index] for index in best]
 
     def _generate(self, text: str, documents: list) -> str:
-        """Просит языковую модель ответить по найденным документам.
+        """Собирает промпт и получает ответ от генератора.
 
             text: вопрос пользователя.
             documents: найденные документы.
 
-        Возвращает: Сгенерированный ответ.
+        Возвращает: Текст ответа.
         """
-        # разметку ролей строит сам токенизатор Qwen
         prompt = self.chat_tokenizer.apply_chat_template(
             build_messages(text, documents),
             tokenize = False,
@@ -158,29 +163,30 @@ class TritonPythonModel:
             enable_thinking = False,
         )
 
-        sampling = json.dumps(
-            {
-                "temperature": 0.7, "top_p": 0.8, "top_k": 20,
-                "min_p": 0.0, "max_tokens": 256,
-            }
-        )
-
-        response = self._call(
-            "text_generator",
-            [
+        request = pb_utils.InferenceRequest(
+            model_name = "text_generator",
+            requested_output_names = ["text_output"],
+            inputs = [
                 pb_utils.Tensor("text_input", np.array([prompt.encode("utf-8")], dtype = object)),
                 pb_utils.Tensor("stream", np.array([False], dtype = bool)),
                 pb_utils.Tensor(
                     "sampling_parameters",
-                    np.array([sampling.encode("utf-8")], dtype = object),
+                    np.array([json.dumps(SAMPLING_PARAMETERS).encode("utf-8")], dtype = object),
                 ),
-                # не возвращать промпт вместе с ответом
-                pb_utils.Tensor("exclude_input_in_output", np.array([True], dtype = bool)),
             ],
-            ["text_output"],
         )
 
-        return self._tensor(response, "text_output")[0].decode("utf-8").strip()
+        pieces = []
+
+        for response in request.exec(decoupled = True):
+            if response is None:
+                continue
+            if response.has_error():
+                raise pb_utils.TritonModelException(response.error().message())
+            tensor = pb_utils.get_output_tensor_by_name(response, "text_output")
+            pieces.append(tensor.as_numpy().reshape(-1)[0].decode("utf-8"))
+
+        return "".join(pieces)
 
     def execute(self, requests):
         """Обрабатывает запросы: отказ либо поиск с генерацией.
