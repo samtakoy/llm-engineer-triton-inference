@@ -10,6 +10,7 @@ dependencies = [
     "sentencepiece==0.2",
     "sentence-transformers>=3.0,<5",
     "ipykernel==6.29",
+    "tritonclient[grpc]>=2.50",
 ]
 
 [tool.uv.sources]

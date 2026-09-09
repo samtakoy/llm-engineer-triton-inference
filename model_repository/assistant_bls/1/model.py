@@ -169,6 +169,7 @@ class TritonPythonModel:
             inputs = [
                 pb_utils.Tensor("text_input", np.array([prompt.encode("utf-8")], dtype = object)),
                 pb_utils.Tensor("stream", np.array([False], dtype = bool)),
+                pb_utils.Tensor("exclude_input_in_output", np.array([True], dtype = bool)),
                 pb_utils.Tensor(
                     "sampling_parameters",
                     np.array([json.dumps(SAMPLING_PARAMETERS).encode("utf-8")], dtype = object),
@@ -186,7 +187,11 @@ class TritonPythonModel:
             tensor = pb_utils.get_output_tensor_by_name(response, "text_output")
             pieces.append(tensor.as_numpy().reshape(-1)[0].decode("utf-8"))
 
-        return "".join(pieces)
+        answer = "".join(pieces)
+        if "</think>" in answer:
+            answer = answer.split("</think>", 1)[1]
+
+        return answer.strip()
 
     def execute(self, requests):
         """Обрабатывает запросы: отказ либо поиск с генерацией.
