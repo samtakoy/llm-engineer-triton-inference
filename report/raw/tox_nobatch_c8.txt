@@ -1,0 +1,48 @@
+
+=================================
+== Triton Inference Server SDK ==
+=================================
+
+NVIDIA Release 25.05 (build 170551373)
+
+Copyright (c) 2018-2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+ Successfully read data for 1 stream/streams with 5 step/steps.
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 5000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 8 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 8
+  Client: 
+    Request count: 980
+    Throughput: 54.3636 infer/sec
+    Avg latency: 147094 usec (standard deviation 33424 usec)
+    p50 latency: 139609 usec
+    p90 latency: 192868 usec
+    p95 latency: 210247 usec
+    p99 latency: 249891 usec
+    Avg gRPC time: 147046 usec ((un)marshal request/response 17 usec + response wait 147029 usec)
+  Server: 
+    Inference count: 980
+    Execution count: 980
+    Successful request count: 980
+    Avg request latency: 141828 usec (overhead 1372 usec + queue 105171 usec + compute input 69 usec + compute infer 35160 usec + compute output 55 usec)
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 8, throughput: 54.3636 infer/sec, latency 147094 usec

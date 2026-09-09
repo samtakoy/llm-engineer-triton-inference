@@ -1,0 +1,46 @@
+
+=================================
+== Triton Inference Server SDK ==
+=================================
+
+NVIDIA Release 25.05 (build 170551373)
+
+Copyright (c) 2018-2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+ Successfully read data for 1 stream/streams with 3 step/steps.
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 5000 msec
+  Using synchronous calls for inference
+
+Request concurrency: 1
+  Client: 
+    Request count: 192
+    Throughput: 10.6577 infer/sec
+    Avg latency: 93707 usec (standard deviation 9334 usec)
+    p50 latency: 91755 usec
+    p90 latency: 102599 usec
+    p95 latency: 108589 usec
+    p99 latency: 132744 usec
+    Avg gRPC time: 93679 usec ((un)marshal request/response 13 usec + response wait 93666 usec)
+  Server: 
+    Inference count: 192
+    Execution count: 192
+    Successful request count: 192
+    Avg request latency: 89327 usec (overhead 358 usec + queue 164 usec + compute input 39 usec + compute infer 88727 usec + compute output 39 usec)
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 1, throughput: 10.6577 infer/sec, latency 93707 usec
