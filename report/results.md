@@ -137,8 +137,6 @@ Triton держит в памяти. Каждый экземпляр берёт 
 
 ## 3. Все модели READY
 
-Полный вывод — [`raw/models_ready.txt`](raw/models_ready.txt).
-
 ```
 Модели в репозитории:
    ✅ ready  assistant_bls
