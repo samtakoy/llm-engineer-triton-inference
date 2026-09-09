@@ -1,0 +1,50 @@
+
+=================================
+== Triton Inference Server SDK ==
+=================================
+
+NVIDIA Release 25.05 (build 170551373)
+
+Copyright (c) 2018-2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+ Successfully read data for 1 stream/streams with 2 step/steps.
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Sending 5 warmup requests
+  Using "count_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Minimum number of samples in each window: 20
+  Latency limit: 0 msec
+  Concurrency limit: 2 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 2
+Request concurrency: 2
+  Client: 
+    Request count: 92
+    Throughput: 30.3377 infer/sec
+    Avg latency: 64625 usec (standard deviation 26506 usec)
+    p50 latency: 58330 usec
+    p90 latency: 104019 usec
+    p95 latency: 116659 usec
+    p99 latency: 135399 usec
+    Avg gRPC time: 64589 usec ((un)marshal request/response 18 usec + response wait 64571 usec)
+  Server: 
+    Inference count: 92
+    Execution count: 92
+    Successful request count: 92
+    Avg request latency: 57167 usec (overhead 5 usec + queue 1029 usec + compute input 66 usec + compute infer 55559 usec + compute output 507 usec)
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 2, throughput: 30.3377 infer/sec, latency 64625 usec

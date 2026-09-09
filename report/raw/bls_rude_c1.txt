@@ -1,0 +1,48 @@
+
+=================================
+== Triton Inference Server SDK ==
+=================================
+
+NVIDIA Release 25.05 (build 170551373)
+
+Copyright (c) 2018-2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+ Successfully read data for 1 stream/streams with 2 step/steps.
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Sending 5 warmup requests
+  Using "count_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Minimum number of samples in each window: 20
+  Using synchronous calls for inference
+
+Request concurrency: 1
+Request concurrency: 1
+  Client: 
+    Request count: 81
+    Throughput: 26.8748 infer/sec
+    Avg latency: 36833 usec (standard deviation 8075 usec)
+    p50 latency: 36122 usec
+    p90 latency: 44197 usec
+    p95 latency: 53096 usec
+    p99 latency: 58861 usec
+    Avg gRPC time: 36727 usec ((un)marshal request/response 26 usec + response wait 36701 usec)
+  Server: 
+    Inference count: 82
+    Execution count: 82
+    Successful request count: 82
+    Avg request latency: 31992 usec (overhead 6 usec + queue 916 usec + compute input 69 usec + compute infer 30540 usec + compute output 460 usec)
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 1, throughput: 26.8748 infer/sec, latency 36833 usec

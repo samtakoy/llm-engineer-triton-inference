@@ -11,6 +11,9 @@ dependencies = [
     "sentence-transformers>=3.0,<5",
     "ipykernel==6.29",
     "tritonclient[grpc]>=2.50",
+    "pandas==3.0.5",
+    "matplotlib==3.11.1",
+    "tabulate==0.10.0",
 ]
 
 [tool.uv.sources]

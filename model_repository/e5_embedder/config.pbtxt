@@ -16,4 +16,8 @@ dynamic_batching {
   max_queue_delay_microseconds: 3000
 }
 
-instance_group [ { count: 1, kind: KIND_CPU } ]
+instance_group [ { count: 4, kind: KIND_CPU } ]
+parameters {
+  key: "intra_op_thread_count"
+  value: { string_value: "2" }
+}

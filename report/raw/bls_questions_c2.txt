@@ -1,0 +1,48 @@
+
+=================================
+== Triton Inference Server SDK ==
+=================================
+
+NVIDIA Release 25.05 (build 170551373)
+
+Copyright (c) 2018-2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+GOVERNING TERMS: The software and materials are governed by the NVIDIA Software License Agreement
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and the Product-Specific Terms for NVIDIA AI Products
+(found at https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-ai-products/).
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+ Successfully read data for 1 stream/streams with 3 step/steps.
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "count_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Minimum number of samples in each window: 20
+  Latency limit: 0 msec
+  Concurrency limit: 2 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 2
+  Client: 
+    Request count: 60
+    Throughput: 0.273902 infer/sec
+    Avg latency: 7145662 usec (standard deviation 150647 usec)
+    p50 latency: 6710953 usec
+    p90 latency: 10563974 usec
+    p95 latency: 12619137 usec
+    p99 latency: 13078390 usec
+    Avg gRPC time: 7145626 usec ((un)marshal request/response 18 usec + response wait 7145608 usec)
+  Server: 
+    Inference count: 60
+    Execution count: 60
+    Successful request count: 60
+    Avg request latency: 7141732 usec (overhead 5 usec + queue 151 usec + compute input 71 usec + compute infer 7141006 usec + compute output 497 usec)
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 2, throughput: 0.273902 infer/sec, latency 7145662 usec

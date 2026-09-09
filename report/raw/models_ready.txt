@@ -1,0 +1,5 @@
+Модели в репозитории:
+   ✅ ready  assistant_bls
+   ✅ ready  e5_embedder
+   ✅ ready  text_generator
+   ✅ ready  toxicity_clf
