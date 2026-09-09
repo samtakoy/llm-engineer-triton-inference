@@ -3,3 +3,5 @@
 /model_repository/*/1/*.onnx
 /docs
 /.env
+prepod_project/
+.DS_Store
